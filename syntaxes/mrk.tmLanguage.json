@@ -1,0 +1,89 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "MARC MRK",
+  "patterns": [
+    {
+      "include": "#marc-field"
+    },
+    {
+      "include": "#comments"
+    }
+  ],
+  "repository": {
+    "marc-field": {
+      "patterns": [
+        {
+          "match": "^(=)(\\d{3})(\\s+)(.)(.)(.*?)$",
+          "captures": {
+            "1": {
+              "name": "keyword.operator.marc.mrk"
+            },
+            "2": {
+              "name": "entity.name.tag.marc.mrk"
+            },
+            "3": {
+              "name": "punctuation.whitespace.marc.mrk"
+            },
+            "4": {
+              "name": "constant.character.indicator.marc.mrk"
+            },
+            "5": {
+              "name": "constant.character.indicator.marc.mrk"
+            },
+            "6": {
+              "patterns": [
+                {
+                  "include": "#subfields"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "match": "^(=)(\\d{3})(\\s+)(.*?)$",
+          "captures": {
+            "1": {
+              "name": "keyword.operator.marc.mrk"
+            },
+            "2": {
+              "name": "entity.name.tag.marc.mrk"
+            },
+            "3": {
+              "name": "punctuation.whitespace.marc.mrk"
+            },
+            "4": {
+              "name": "string.unquoted.marc.mrk"
+            }
+          }
+        }
+      ]
+    },
+    "subfields": {
+      "patterns": [
+        {
+          "match": "(\\$)([a-z0-9])([^$]*)",
+          "captures": {
+            "1": {
+              "name": "keyword.operator.subfield.marc.mrk"
+            },
+            "2": {
+              "name": "variable.parameter.subfield.marc.mrk"
+            },
+            "3": {
+              "name": "string.unquoted.subfield-content.marc.mrk"
+            }
+          }
+        }
+      ]
+    },
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.marc.mrk",
+          "match": "#.*$"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.mrk"
+}

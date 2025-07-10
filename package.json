@@ -1,0 +1,82 @@
+{
+  "name": "marc-lsp",
+  "displayName": "MARC Language Support",
+  "description": "Language support for MARC MRK (machine-readable cataloging) files",
+  "version": "0.1.0",
+  "publisher": "marc-lsp",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "keywords": [
+    "marc",
+    "mrk",
+    "cataloging",
+    "library",
+    "bibliographic"
+  ],
+  "activationEvents": [
+    "onLanguage:mrk"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "mrk",
+        "aliases": [
+          "MARC MRK",
+          "mrk"
+        ],
+        "extensions": [
+          ".mrk",
+          ".mrc"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "mrk",
+        "scopeName": "source.mrk",
+        "path": "./syntaxes/mrk.tmLanguage.json"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "MARC LSP",
+      "properties": {
+        "marcLsp.serverCommand": {
+          "type": "string",
+          "default": "marc-lsp-server",
+          "description": "Command to run the MARC LSP server (should be on PATH or full path)"
+        },
+        "marcLsp.trace.server": {
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "description": "Traces the communication between VS Code and the language server."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "16.x",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^8.1.0"
+  }
+}
