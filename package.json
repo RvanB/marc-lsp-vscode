@@ -31,8 +31,7 @@
           "mrk"
         ],
         "extensions": [
-          ".mrk",
-          ".mrc"
+          ".mrk"
         ],
         "configuration": "./language-configuration.json"
       }
